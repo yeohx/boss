@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.1.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.1.xsd"
+       default-autowire="byName">
+    <!-- remote接口配置-->
+    <bean id="iHelloWord" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8082/remote/boss/helloword"/>
+        <property name="serviceInterface" value="com.qdingnet.pcloud.IHelloWord"/>
+    </bean>
+    <bean id="iClientService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8082/remote/boss/client"/>
+        <property name="serviceInterface" value="com.qdingnet.pcloud.service.IClientService"/>
+    </bean>
+    <bean id="iClientRefService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8082/remote/boss/clientref"/>
+        <property name="serviceInterface" value="com.qdingnet.pcloud.service.IClientRefService"/>
+    </bean>
+    <bean id="iProductInstanceService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8082/remote/boss/productinstance"/>
+        <property name="serviceInterface" value="com.qdingnet.pcloud.service.IProductInstanceService"/>
+    </bean>
+</beans>

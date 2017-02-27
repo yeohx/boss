@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qdingnet.pcloud.mapper.billing.ClientMapper" >
+  <resultMap id="BaseResultMap" type="com.qdingnet.pcloud.entity.billing.Client" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CLIENT_NAME" property="clientName" jdbcType="VARCHAR" />
+    <result column="BALANCE" property="balance" jdbcType="REAL" />
+    <result column="DES" property="des" jdbcType="VARCHAR" />
+    <result column="GAP_ID" property="gapId" jdbcType="VARCHAR" />
+    <result column="GAP_NAME" property="gapName" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="SMALLINT" />
+    <result column="VERSION_NUM" property="versionNum" jdbcType="INTEGER" />
+    <result column="IS_DEL" property="isDel" jdbcType="TINYINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="TIMESTAMP" property="timestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CLIENT_NAME, BALANCE, DES, GAP_ID, GAP_NAME, STATE, VERSION_NUM, IS_DEL, CREATE_TIME, 
+    CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID, TIMESTAMP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cd_client
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from cd_client
+    where CLIENT_NAME = #{clientName,jdbcType=VARCHAR}
+  </select>
+  <select id="getClientNotDel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from cd_client
+    where IS_DEL != 1;
+  </select>
+  <select id="getAllClient" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from cd_client
+    where 1;
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cd_client
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qdingnet.pcloud.entity.billing.Client" >
+    insert into cd_client (ID, CLIENT_NAME, BALANCE, 
+      DES, GAP_ID, GAP_NAME, 
+      STATE, VERSION_NUM, IS_DEL, 
+      CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, 
+      UPDATE_USER_ID, TIMESTAMP)
+    values (#{id,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, #{balance,jdbcType=REAL}, 
+      #{des,jdbcType=VARCHAR}, #{gapId,jdbcType=VARCHAR}, #{gapName,jdbcType=VARCHAR}, 
+      #{state,jdbcType=SMALLINT}, #{versionNum,jdbcType=INTEGER}, #{isDel,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=VARCHAR}, #{timestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qdingnet.pcloud.entity.billing.Client" >
+    insert into cd_client
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="clientName != null" >
+        CLIENT_NAME,
+      </if>
+      <if test="balance != null" >
+        BALANCE,
+      </if>
+      <if test="des != null" >
+        DES,
+      </if>
+      <if test="gapId != null" >
+        GAP_ID,
+      </if>
+      <if test="gapName != null" >
+        GAP_NAME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="versionNum != null" >
+        VERSION_NUM,
+      </if>
+      <if test="isDel != null" >
+        IS_DEL,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID,
+      </if>
+      <if test="timestamp != null" >
+        TIMESTAMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null" >
+        #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=REAL},
+      </if>
+      <if test="des != null" >
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="gapId != null" >
+        #{gapId,jdbcType=VARCHAR},
+      </if>
+      <if test="gapName != null" >
+        #{gapName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="versionNum != null" >
+        #{versionNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qdingnet.pcloud.entity.billing.Client" >
+    update cd_client
+    <set >
+      <if test="clientName != null" >
+        CLIENT_NAME = #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        BALANCE = #{balance,jdbcType=REAL},
+      </if>
+      <if test="des != null" >
+        DES = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="gapId != null" >
+        GAP_ID = #{gapId,jdbcType=VARCHAR},
+      </if>
+      <if test="gapName != null" >
+        GAP_NAME = #{gapName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="versionNum != null" >
+        VERSION_NUM = #{versionNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        IS_DEL = #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        TIMESTAMP = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qdingnet.pcloud.entity.billing.Client" >
+    update cd_client
+    set CLIENT_NAME = #{clientName,jdbcType=VARCHAR},
+      BALANCE = #{balance,jdbcType=REAL},
+      DES = #{des,jdbcType=VARCHAR},
+      GAP_ID = #{gapId,jdbcType=VARCHAR},
+      GAP_NAME = #{gapName,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=SMALLINT},
+      VERSION_NUM = #{versionNum,jdbcType=INTEGER},
+      IS_DEL = #{isDel,jdbcType=TINYINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      TIMESTAMP = #{timestamp,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

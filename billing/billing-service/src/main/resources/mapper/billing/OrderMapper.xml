@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qdingnet.pcloud.mapper.billing.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.qdingnet.pcloud.entity.billing.Order" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PRODUCT_INSTANCE_ID" property="productInstanceId" jdbcType="VARCHAR" />
+    <result column="CLIENT_CHILD_ID" property="clientChildId" jdbcType="VARCHAR" />
+    <result column="CLIENT_CHILD_NAME" property="clientChildName" jdbcType="VARCHAR" />
+    <result column="CLIENT_ID" property="clientId" jdbcType="VARCHAR" />
+    <result column="CLIENT_NAME" property="clientName" jdbcType="VARCHAR" />
+    <result column="PAY_COUNT" property="payCount" jdbcType="REAL" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="TINYINT" />
+    <result column="VERSION_NUM" property="versionNum" jdbcType="INTEGER" />
+    <result column="IS_DEL" property="isDel" jdbcType="TINYINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="TIMESTAMP" property="timestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PRODUCT_INSTANCE_ID, CLIENT_CHILD_ID, CLIENT_CHILD_NAME, CLIENT_ID, CLIENT_NAME, 
+    PAY_COUNT, START_TIME, END_TIME, STATE, VERSION_NUM, IS_DEL, CREATE_TIME, CREATE_USER_ID, 
+    UPDATE_TIME, UPDATE_USER_ID, TIMESTAMP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cd_order
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cd_order
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qdingnet.pcloud.entity.billing.Order" >
+    insert into cd_order (ID, PRODUCT_INSTANCE_ID, CLIENT_CHILD_ID, 
+      CLIENT_CHILD_NAME, CLIENT_ID, CLIENT_NAME, 
+      PAY_COUNT, START_TIME, END_TIME, 
+      STATE, VERSION_NUM, IS_DEL, 
+      CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, 
+      UPDATE_USER_ID, TIMESTAMP)
+    values (#{id,jdbcType=VARCHAR}, #{productInstanceId,jdbcType=VARCHAR}, #{clientChildId,jdbcType=VARCHAR}, 
+      #{clientChildName,jdbcType=VARCHAR}, #{clientId,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, 
+      #{payCount,jdbcType=REAL}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=TINYINT}, #{versionNum,jdbcType=INTEGER}, #{isDel,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=VARCHAR}, #{timestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qdingnet.pcloud.entity.billing.Order" >
+    insert into cd_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="productInstanceId != null" >
+        PRODUCT_INSTANCE_ID,
+      </if>
+      <if test="clientChildId != null" >
+        CLIENT_CHILD_ID,
+      </if>
+      <if test="clientChildName != null" >
+        CLIENT_CHILD_NAME,
+      </if>
+      <if test="clientId != null" >
+        CLIENT_ID,
+      </if>
+      <if test="clientName != null" >
+        CLIENT_NAME,
+      </if>
+      <if test="payCount != null" >
+        PAY_COUNT,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="versionNum != null" >
+        VERSION_NUM,
+      </if>
+      <if test="isDel != null" >
+        IS_DEL,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID,
+      </if>
+      <if test="timestamp != null" >
+        TIMESTAMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="productInstanceId != null" >
+        #{productInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientChildId != null" >
+        #{clientChildId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientChildName != null" >
+        #{clientChildName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null" >
+        #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="payCount != null" >
+        #{payCount,jdbcType=REAL},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="versionNum != null" >
+        #{versionNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qdingnet.pcloud.entity.billing.Order" >
+    update cd_order
+    <set >
+      <if test="productInstanceId != null" >
+        PRODUCT_INSTANCE_ID = #{productInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientChildId != null" >
+        CLIENT_CHILD_ID = #{clientChildId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientChildName != null" >
+        CLIENT_CHILD_NAME = #{clientChildName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null" >
+        CLIENT_ID = #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null" >
+        CLIENT_NAME = #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="payCount != null" >
+        PAY_COUNT = #{payCount,jdbcType=REAL},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="versionNum != null" >
+        VERSION_NUM = #{versionNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        IS_DEL = #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        TIMESTAMP = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qdingnet.pcloud.entity.billing.Order" >
+    update cd_order
+    set PRODUCT_INSTANCE_ID = #{productInstanceId,jdbcType=VARCHAR},
+      CLIENT_CHILD_ID = #{clientChildId,jdbcType=VARCHAR},
+      CLIENT_CHILD_NAME = #{clientChildName,jdbcType=VARCHAR},
+      CLIENT_ID = #{clientId,jdbcType=VARCHAR},
+      CLIENT_NAME = #{clientName,jdbcType=VARCHAR},
+      PAY_COUNT = #{payCount,jdbcType=REAL},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=TINYINT},
+      VERSION_NUM = #{versionNum,jdbcType=INTEGER},
+      IS_DEL = #{isDel,jdbcType=TINYINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      TIMESTAMP = #{timestamp,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
